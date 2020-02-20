@@ -5,6 +5,15 @@
     <RootNamespace>FCS_Analysis</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Entities\" />
+    <Folder Include="Models\ViewModel\" />
+  </ItemGroup>
+
 
 
 </Project>
