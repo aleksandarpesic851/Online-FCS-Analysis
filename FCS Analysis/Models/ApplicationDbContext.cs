@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FCS_Analysis.Models
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
