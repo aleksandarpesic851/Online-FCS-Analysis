@@ -8,10 +8,8 @@ namespace FCS_Analysis.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySQL("server=localhost;database=library;user=user;password=password");
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

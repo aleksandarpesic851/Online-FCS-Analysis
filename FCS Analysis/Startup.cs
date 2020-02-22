@@ -28,6 +28,8 @@ namespace FCS_Analysis
             services.AddControllersWithViews();
             // Register App Settings
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetSection("AppSettings").GetSection("ConnectionString").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +46,7 @@ namespace FCS_Analysis
                 app.UseHsts();
             }
 
+            // Migrate db when start
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
