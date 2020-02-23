@@ -18,12 +18,12 @@ namespace FCS_Analysis.Models.Entities
         public string user_password { get; set; }
         public string user_name { get; set; }
         public string user_avatar { get; set; }
-        public DateTime createdAt { get; set; }
-        public DateTime updatedAt { get; set; }
+        public DateTime createdAt { get; set; } = DateTime.Now;
+        public DateTime updatedAt { get; set; } = DateTime.Now;
         public string user_role { get; set; }
         [Phone]
         public string user_phone { get; set; }
         public string user_address { get; set; }
-        public bool user_activated { get; set; }
+        public bool user_activated { get; set; } = true;
     }
 }

@@ -17,7 +17,7 @@ namespace FCS_Analysis.Models
         {
             base.OnModelCreating(modelBuilder);
             InitiateEntity(modelBuilder);
-            //SeedData(modelBuilder);
+            SeedData(modelBuilder);
 
         }
 
@@ -70,6 +70,7 @@ namespace FCS_Analysis.Models
         {
             modelBuilder.Entity<User>().HasData(new User
             {
+                user_id = 1,
                 user_name = "Admin",
                 user_email = "admin@gmail.com",
                 user_password = "secret",
