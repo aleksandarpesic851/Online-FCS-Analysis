@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FCS_Analysis.Models;
 using FCS_Analysis.Models.Entities;
+using FCS_Analysis.Models.ViewModel;
 using FCS_Analysis.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -40,21 +42,20 @@ namespace FCS_Analysis.Controllers
         public async Task<IActionResult> Login(User model, string returnUrl = "/")
         {
             User loginUser = null;
-            try
-            {
-                loginUser = _dbContext.Users.Where(user => user.user_email == model.user_email && user.user_password == model.user_password).First();
-            }
-            catch
+            loginUser = _dbContext.Users.Where(user => user.user_email == model.user_email && user.user_password == model.user_password).FirstOrDefault();
+            
+            if (loginUser == null)
             {
                 ViewData["ErrorMessage"] = "Your credential is incorrect.";
                 ViewData["ReturnUrl"] = returnUrl;
                 return View();
             }
+                
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Role, loginUser.user_role),
                 new Claim("user_name", loginUser.user_name == null ? "" : loginUser.user_name),
-                new Claim("user_id", "" + loginUser.user_id),
+                new Claim("user_id", "" + loginUser.user_id)
             };
 
             var userIdentity = new ClaimsIdentity(claims, "user");
@@ -66,10 +67,16 @@ namespace FCS_Analysis.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(User model)
+        public async Task<IActionResult> Register(UserViewModel model)
         {
             if (User.Identity.IsAuthenticated)
                 return Redirect("/");
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             // check there is same user email with this model.
             int nCnt = _dbContext.Users.Where(user => user.user_email == model.user_email).Count();
             if (nCnt > 0)
@@ -77,7 +84,24 @@ namespace FCS_Analysis.Controllers
                 ViewData["ErrorMessage"] = "There exists an user with this email. please try with other one.";
                 return View();
             }
-            model.user_role = Constants.ROLE_CUSTOMER;
+
+            string filePath = "/uploads/avatars/";
+            if (model.user_avatar_image != null && model.user_avatar_image.Length > 0)
+            {
+                string fileName = model.user_avatar_image.FileName;
+                int nIdx = fileName.LastIndexOf('\\');
+                nIdx = nIdx > 0 ? nIdx + 1 : 0;
+                fileName = fileName.Substring(nIdx);
+
+                filePath = "/uploads/avatars/" + Path.GetRandomFileName() + "_" + fileName;
+                string fullPath = Path.GetFullPath("./wwwroot") + filePath;
+
+                using (var stream = System.IO.File.Create(fullPath))
+                {
+                    await model.user_avatar_image.CopyToAsync(stream);
+                }
+            }
+            model.user_avatar = filePath;
             _dbContext.Users.Add(model);
             _dbContext.SaveChanges();
 
