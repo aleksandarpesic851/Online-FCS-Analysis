@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using FCS_Analysis.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FCS_Analysis
 {
@@ -29,7 +30,14 @@ namespace FCS_Analysis
             // Register App Settings
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(Configuration.GetSection("AppSettings").GetSection("ConnectionString").Value));
+            services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseMySQL(Configuration.GetSection("AppSettings").GetSection("ConnectionString").Value));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/Users/Login/";
+                    options.AccessDeniedPath = "/Users/AccessDenied";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +58,7 @@ namespace FCS_Analysis
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.Migrate();
+                context.Database.EnsureCreated();
             }
 
             app.UseHttpsRedirection();
