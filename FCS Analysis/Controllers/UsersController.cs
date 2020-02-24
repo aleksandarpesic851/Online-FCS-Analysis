@@ -4,15 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FCS_Analysis.Models;
-using FCS_Analysis.Models.Entities;
-using FCS_Analysis.Models.ViewModel;
-using FCS_Analysis.Utilities;
+using Online_FCS_Analysis.Models;
+using Online_FCS_Analysis.Models.Entities;
+using Online_FCS_Analysis.Models.ViewModel;
+using Online_FCS_Analysis.Utilities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FCS_Analysis.Controllers
+namespace Online_FCS_Analysis.Controllers
 {
     public class UsersController : Controller
     {
@@ -21,21 +21,6 @@ namespace FCS_Analysis.Controllers
         public UsersController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        public IActionResult Login(string returnUrl = "/")
-        {
-            if (User.Identity.IsAuthenticated)
-                return Redirect("/");
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        public IActionResult Register()
-        {
-            if (User.Identity.IsAuthenticated)
-                return Redirect("/");
-            return View();
         }
 
         [HttpPost]

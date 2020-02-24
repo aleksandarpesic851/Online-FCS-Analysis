@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FCS_Analysis.Models;
+using Online_FCS_Analysis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace FCS_Analysis
+namespace Online_FCS_Analysis
 {
     public class Startup
     {

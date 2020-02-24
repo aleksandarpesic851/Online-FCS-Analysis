@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCS_Analysis.Models.ViewModel
+namespace Online_FCS_Analysis.Models.ViewModel
 {
     public class ErrorMsgModel
     {

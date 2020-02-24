@@ -1,12 +1,12 @@
-﻿using FCS_Analysis.Models.Entities;
-using FCS_Analysis.Utilities;
+﻿using Online_FCS_Analysis.Models.Entities;
+using Online_FCS_Analysis.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCS_Analysis.Models
+namespace Online_FCS_Analysis.Models
 {
     public class ApplicationDbContext : DbContext
     {

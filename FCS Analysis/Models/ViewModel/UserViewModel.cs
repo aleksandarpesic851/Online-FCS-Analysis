@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using FCS_Analysis.Models.Entities;
-using FCS_Analysis.Utilities;
+using Online_FCS_Analysis.Models.Entities;
+using Online_FCS_Analysis.Utilities;
 using Microsoft.AspNetCore.Http;
 
-namespace FCS_Analysis.Models.ViewModel
+namespace Online_FCS_Analysis.Models.ViewModel
 {
     public class UserViewModel
     {

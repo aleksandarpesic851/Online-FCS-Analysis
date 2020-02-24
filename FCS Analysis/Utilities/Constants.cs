@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCS_Analysis.Utilities
+namespace Online_FCS_Analysis.Utilities
 {
     public class Constants
     {

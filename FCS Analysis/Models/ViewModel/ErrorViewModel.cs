@@ -1,6 +1,6 @@
 using System;
 
-namespace FCS_Analysis.Models.ViewModel
+namespace Online_FCS_Analysis.Models.ViewModel
 {
     public class ErrorViewModel
     {

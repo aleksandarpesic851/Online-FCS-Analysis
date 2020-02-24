@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FCS_Analysis.Models.ViewModel;
+using Online_FCS_Analysis.Models.ViewModel;
 
-namespace FCS_Analysis.Controllers
+namespace Online_FCS_Analysis.Controllers
 {
     public class HomeController : Controller
     {

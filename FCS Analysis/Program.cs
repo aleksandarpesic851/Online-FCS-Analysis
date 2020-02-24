@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace FCS_Analysis
+namespace Online_FCS_Analysis
 {
     public class Program
     {
