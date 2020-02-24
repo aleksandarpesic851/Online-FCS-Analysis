@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FCS_Analysis.Models;
+using FCS_Analysis.Models.ViewModel;
 
 namespace FCS_Analysis.Controllers
 {
@@ -18,8 +18,9 @@ namespace FCS_Analysis.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ErrorMsgModel error)
         {
+            ViewData["Error"] = error;
             return View();
         }
 

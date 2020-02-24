@@ -30,7 +30,7 @@ namespace FCS_Analysis.Models.ViewModel
         public string user_address { get; set; }
         public bool user_activated { get; set; } = true;
 
-        public static implicit operator UserViewModel(User user)
+        public static implicit operator UserViewModel(UserModel user)
         {
             return new UserViewModel
             {
@@ -46,9 +46,9 @@ namespace FCS_Analysis.Models.ViewModel
             };
         }
 
-        public static implicit operator User(UserViewModel user)
+        public static implicit operator UserModel(UserViewModel user)
         {
-            return new User
+            return new UserModel
             {
                 user_id = user.user_id,
                 user_email = user.user_email,

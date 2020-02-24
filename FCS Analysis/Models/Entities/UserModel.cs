@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FCS_Analysis.Models.Entities
 {
-    public class User
+    public class UserModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

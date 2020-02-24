@@ -2135,7 +2135,7 @@ h3 {
 }
 
 /* line 173, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-#test-form, #test-form2 {
+#login-form, #register-form {
   display: inline-block;
   margin: auto;
   text-align: center;
@@ -2150,7 +2150,7 @@ h3 {
 
 @media (max-width: 767px) {
   /* line 173, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-  #test-form, #test-form2 {
+  #login-form, #register-form {
     top: 0;
     left: 0;
     width: 100%;
@@ -2163,19 +2163,19 @@ h3 {
 }
 
 /* line 188, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-#test-form .mfp-close-btn-in .mfp-close, #test-form2 .mfp-close-btn-in .mfp-close {
+#login-form .mfp-close-btn-in .mfp-close, #register-form .mfp-close-btn-in .mfp-close {
   color: #333;
   display: none !important;
 }
 
 /* line 193, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-#test-form button.mfp-close, #test-form2 button.mfp-close {
+#login-form button.mfp-close, #register-form button.mfp-close {
   display: none !important;
 }
 
 @media (max-width: 767px) {
   /* line 193, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-  #test-form button.mfp-close, #test-form2 button.mfp-close {
+  #login-form button.mfp-close, #register-form button.mfp-close {
     display: block !important;
     position: absolute;
     left: 0;
@@ -2185,7 +2185,7 @@ h3 {
 }
 
 /* line 204, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_bradcam.scss */
-#test-form button.mfp-close, #test-form2 button.mfp-close {
+#login-form button.mfp-close, #register-form button.mfp-close {
   overflow: visible;
   cursor: pointer;
   background: transparent;

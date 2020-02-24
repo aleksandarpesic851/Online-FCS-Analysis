@@ -12,7 +12,7 @@ namespace FCS_Analysis.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {}
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserModel> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -24,7 +24,7 @@ namespace FCS_Analysis.Models
         private void InitiateEntity(ModelBuilder modelBuilder)
         {
             #region User
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.ToTable("users");
 
@@ -68,7 +68,7 @@ namespace FCS_Analysis.Models
 
         private void SeedData(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
+            modelBuilder.Entity<UserModel>().HasData(new UserModel
             {
                 user_id = 1,
                 user_name = "Admin",

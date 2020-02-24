@@ -39,16 +39,14 @@ namespace FCS_Analysis.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(User model, string returnUrl = "/")
+        public async Task<IActionResult> Login(UserModel model, string returnUrl = "/")
         {
-            User loginUser = null;
+            UserModel loginUser = null;
             loginUser = _dbContext.Users.Where(user => user.user_email == model.user_email && user.user_password == model.user_password).FirstOrDefault();
             
             if (loginUser == null)
             {
-                ViewData["ErrorMessage"] = "Your credential is incorrect.";
-                ViewData["ReturnUrl"] = returnUrl;
-                return View();
+                return RedirectToAction("", "Home", new ErrorMsgModel { errorMsg = "Your credential is incorrect.", errorIn = Constants.ERROR_IN_LOGIN });
             }
                 
             List<Claim> claims = new List<Claim>
@@ -74,15 +72,14 @@ namespace FCS_Analysis.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("", "Home", new ErrorMsgModel { errorMsg = "Your credential is incorrect.", errorIn = Constants.ERROR_IN_REGISTER });
             }
 
             // check there is same user email with this model.
             int nCnt = _dbContext.Users.Where(user => user.user_email == model.user_email).Count();
             if (nCnt > 0)
             {
-                ViewData["ErrorMessage"] = "There exists an user with this email. please try with other one.";
-                return View();
+                return RedirectToAction("", "Home", new ErrorMsgModel { errorMsg = "There exists an user with this email. please try with other one.", errorIn = Constants.ERROR_IN_REGISTER });
             }
 
             string filePath = "/uploads/avatars/";
@@ -129,27 +126,27 @@ namespace FCS_Analysis.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return Redirect("/Account/Login");
+            return RedirectToAction("", "Home");
         }
 
         [Authorize]
         public IActionResult MyAccount()
         {
-            User currentUser = _dbContext.Users.Find(Convert.ToInt32(User.FindFirstValue("user_id")));
+            UserModel currentUser = _dbContext.Users.Find(Convert.ToInt32(User.FindFirstValue("user_id")));
             return View(currentUser);
         }
 
         [Authorize(Roles = Constants.ROLE_ADMIN)]
         public IActionResult Customers(string message = "")
         {
-            List<User> arrUsers = _dbContext.Users.Where(user => user.user_role != Constants.ROLE_ADMIN).ToList();
+            List<UserModel> arrUsers = _dbContext.Users.Where(user => user.user_role != Constants.ROLE_ADMIN).ToList();
             ViewData["message"] = message;
             return View(arrUsers);
         }
 
         [Authorize(Roles = Constants.ROLE_ADMIN)]
         [HttpPost]
-        public IActionResult UpdateUser(User model)
+        public IActionResult UpdateUser(UserModel model)
         {
             string message = "";
             int nCnt = _dbContext.Users.Where(user => user.user_email == model.user_email).Count();

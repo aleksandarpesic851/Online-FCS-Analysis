@@ -10,5 +10,8 @@ namespace FCS_Analysis.Utilities
         public const string ROLE_ADMIN = "Admin";
         public const string ROLE_CUSTOMER = "Customer";
 
+        public const string ERROR_IN_LOGIN = "login";
+        public const string ERROR_IN_REGISTER = "register";
+
     }
 }
